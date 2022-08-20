@@ -21,7 +21,7 @@
      (start-scmutils-print!)
    #+END_SRC
 
-   - or `scheme run.ss`
+   - or `$ scheme run.ss`
   
    You can compute the derivative of a scalar or vector valued
    function evaluated at point 'x with:
