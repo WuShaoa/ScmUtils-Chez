@@ -16,10 +16,10 @@
 PACKAGE = chez-scmutils
 VERSION = 0.1
 
-CHEZ = chez-scheme
+CHEZ = scheme
 INSTALL = install -D
 
-PREFIX = /usr/local
+PREFIX = ./local
 EXEC_PREFIX = ${PREFIX}
 BINDIR = ${EXEC_PREFIX}/bin
 LIBDIR = ${EXEC_PREFIX}/lib

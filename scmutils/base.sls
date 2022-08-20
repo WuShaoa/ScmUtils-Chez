@@ -1124,10 +1124,10 @@
           (mit hash-tables)
           (mit environment)
           (mit streams)
-          (only (srfi :1) reduce delete any every lset-adjoin make-list append-map)
-          (srfi :9)
-          (srfi :14) ; char-set
-          (rename (srfi :41) (stream-cons cons-stream)
+          (only (srfi srfi-1) reduce delete any every lset-adjoin make-list append-map)
+          (srfi srfi-9)
+          (srfi srfi-14) ; char-set
+          (rename (srfi srfi-41) (stream-cons cons-stream)
                   (stream-fold stream-accumulate))
           (only (chezscheme) include import compile module eval-when
                 last-pair environment? scheme-environment

@@ -13,7 +13,7 @@
   
 ** Examples
    
-   Load the libraries in the REPL (see below for further details):
+   - Load the libraries in the REPL (see below for further details):
    #+BEGIN_SRC scheme
      (import (scmutils base)
              (scmutils generic)
@@ -21,6 +21,8 @@
      (start-scmutils-print!)
    #+END_SRC
 
+   - or `scheme run.ss`
+  
    You can compute the derivative of a scalar or vector valued
    function evaluated at point 'x with:
    #+BEGIN_SRC scheme
