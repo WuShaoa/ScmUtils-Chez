@@ -33,20 +33,23 @@ DOCDIR = ${DATAROOTDIR}/doc/${PACKAGE}-${VERSION}
 chezversion ::= $(shell echo '(call-with-values scheme-version-number (lambda (a b c) (format \#t "~d.~d" a b)))' | ${CHEZ} -q)
 schemedir = ${LIBDIR}/csv${chezversion}-site
 
+.PHONY: build install install-src check-schemedir clean
+
 build:
-	$(CHEZ) --program compile-all.ss
+	$(CHEZ) --compile-imported-libraries --program compile-all.ss 
+
+install:
+	find . -type f -regex ".*.so" -exec sh -c 'mkdir -p ${schemedir}/$$(dirname $$1) ; ${INSTALL} -t ${schemedir}/$$(dirname $$1) $$1' _ {} \;
+	${INSTALL} -t ${DOCDIR} README doc/refman.txt
+	cp run.ss ${schemedir}
+
+install-src:
+	find . -type f -regex ".*.s\(ls\|cm\)" -exec sh -c 'mkdir -p ${schemedir}/$$(dirname $$1) ; ${INSTALL} -t ${schemedir}/$$(dirname $$1) $$1' _ {} \;
+	${INSTALL} -t ${schemedir} Makefile compile-all.ss run.ss
+
+check-schemedir:
+	echo ${schemedir}
 
 clean:
 	find . -name "*.so" -exec rm {} \;
 	find . -name "*~" -exec rm {} \;
-
-install:
-	find . -type f -regex ".*.so" -exec sh -c '${INSTALL} -t ${schemedir}/$$(dirname $$1) $$1' _ {} \;
-	${INSTALL} -t ${DOCDIR} README doc/refman.txt
-
-install-src:
-	find . -type f -regex ".*.s\(ls\|cm\)" -exec sh -c '${INSTALL} -t ${schemedir}/$$(dirname $$1) $$1' _ {} \;
-	${INSTALL} -t ${schemedir} Makefile compile-all.ss
-
-check-schemedir:
-	echo ${schemedir}
