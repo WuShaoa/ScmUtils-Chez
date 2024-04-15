@@ -14,10 +14,9 @@
           hash-table/key-list
           hash
           hash-table->alist)
-  (import (except (chezscheme) error assert sort)
+  (import (except (chezscheme) error assert sort  string->uninterned-symbol) ;fixed bug: multiple definitions for string->uninterned-symbol for Chez version >= 10.0
           (mit core)
-          (mit curry)
-          )
+          (mit curry)    )
 
 (define make-key-weak-eqv-hash-table make-weak-eqv-hashtable)
 
